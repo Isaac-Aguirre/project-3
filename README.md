@@ -7,6 +7,9 @@ Isaac, Rob, Armen, Sadiq
 * store posts
 * store users and their profile
 
+## Recharts
+* analytics for the dashboard-
+
 ## Google Api(s)
 * link location of posts
 * use to loging with your google +
@@ -26,20 +29,21 @@ Isaac, Rob, Armen, Sadiq
 * fabricate posts about the news on a news account
 
 ### Landing Page (logged out)
-# sign up / sign in page
+* sign up / sign in page
 
 ### Landing Page (logged in)
-# followed page/ trending / suggestions
-# sidebar your account / make a post
-# navbar signout / view account 
+* followed page/ trending / suggestions
+* sidebar your account / make a post
+* navbar signout / view account 
 
 ## Account Dashboard
-# your followers / who follows you
-# edit account button
-# Profile pic 
+* your followers / who follows you
+* edit account button
+* Profile pic 
+* analytics on your posts and how they do compared to past posts
 
 ## Direct messages
-# message other users on the website
+* message other users on the website
 
 ## Search Page
-# search for trends / people 
+* search for trends / people 
