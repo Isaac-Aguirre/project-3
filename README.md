@@ -11,11 +11,11 @@
 * posts are going to have a user id attached to them 
 * like function to posts 
 * location string allowed null if location then append button to show location on card.
-* api calls for user will be a /user
+* api calls for user will be a /users
 * api calls for the posts will be /post
  
 ## Recharts
-# analytics for the dashboard-
+* analytics for the dashboard-
  
 ## Google Api(s)
 * link location of posts //Armen
@@ -58,3 +58,10 @@
 ## Search Page // general
 * search for trends / people 
 * /search
+
+
+
+## Subscribe
+1. Backend User has a prop called followed and followers and they are going to be strings that are stringified arrays
+2. Is going to grab the followed from the user that is following a new person and add the new person into an array and then stringify and push to backend
+3. User that is being followed is going to get the name or id of the person that they are being followed by and thrown into the followers prop
