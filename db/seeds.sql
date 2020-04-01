@@ -1,0 +1,1 @@
+SELECT * from users_db where follower_id = current_user()
