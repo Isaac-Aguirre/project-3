@@ -2,8 +2,8 @@ DROP DATABASE IF EXISTS hollar_db;
 CREATE DATABASE hollar_db;
 USE hollar_db;
 CREATE TABLE IF NOT EXISTS howls(
-    user_id int(10) unsigned NOT NULL AUTO_INCREMENT,
-    howls_id bigint(20) unsigned NOT NULL,
+    user_id int(10) unsigned NOT NULL,
+    howls_id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
     howls_text varchar(150) NOT NULL,
     created_at datetime NOT NULL,
     PRIMARY KEY (howls_id)
