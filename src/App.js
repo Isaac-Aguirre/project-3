@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 //import './App.css';
 import Navbar from './components/Navbar/Navbar';
-//import Sidebar from './components/Sidebar/Sidebar';
+import Sidebar from './components/Sidebar/Sidebar';
 import LandingPage from './components/LandingPage/LandingPage';
-import Login from './components/Login/Login';
+//import Login from './components/Login/Login';
 import {
     BrowserRouter as Router,
     Switch,
@@ -18,7 +18,6 @@ function App() {
         <React.Fragment>
             <Navbar />
             
-            <Login />
             <Router>
                 <Route exact path="/">
                     <loggedContext.Provider value={{ isLogged: false }}>
@@ -26,6 +25,7 @@ function App() {
                     </loggedContext.Provider>
                 </Route>
             </Router>
+            <Sidebar />
         </React.Fragment>
     )
 }
