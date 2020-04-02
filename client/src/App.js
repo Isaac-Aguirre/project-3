@@ -24,10 +24,16 @@ function App() {
         }).catch(err=>console.log(err))
     }
 
+    const handleSignup =(data)=>{
+        API.signUp(data).then(res=>{
+
+        })
+    }
+
     return (
         <div className='container'>
             <Router>
-            <loggedContext.Provider value={{...user, login: handleLogin}}>
+            <loggedContext.Provider value={{...user, login: handleLogin, signUp: handleSignup}}>
             <Navbar />
                 <Route exact path='/home' component={HomePage}/>
                 <Route exact path="/" component={LandingPage}/>
