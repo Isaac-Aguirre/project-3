@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 //import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import Sidebar from './components/Sidebar/Sidebar';
-import LandingPage from './components/LandingPage/LandingPage'
+//import Sidebar from './components/Sidebar/Sidebar';
+import LandingPage from './components/LandingPage/LandingPage';
+import Login from './components/Login/Login';
 import {
     BrowserRouter as Router,
     Switch,
@@ -16,7 +17,8 @@ function App() {
     return (
         <React.Fragment>
             <Navbar />
-            <Sidebar />
+            
+            <Login />
             <Router>
                 <Route exact path="/">
                     <loggedContext.Provider value={{ isLogged: false }}>
