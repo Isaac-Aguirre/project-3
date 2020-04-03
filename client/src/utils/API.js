@@ -1,6 +1,6 @@
 const axios = require('axios');
 
 export default {
-    login: (data)=> axios.post('/api/login', data),
-    signUp: (data)=> axios.post('/api/signup', data)
+    login: (data)=> axios.post('/data/login', data),
+    signUp: (data)=> axios.post('/data/signup', data)
 }
