@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 //import './App.css';
-import Navbar from './components/Navbar/Navbar';
+//import Navbar from './components/Navbar/Navbar';
 //import Sidebar from './components/Sidebar/Sidebar';
 import LandingPage from './components/LandingPage/LandingPage';
 import HomePage from './components/HomePage/HomePage'
@@ -34,7 +34,7 @@ function App() {
         <div className='container'>
             <Router>
             <loggedContext.Provider value={{...user, login: handleLogin, signUp: handleSignup}}>
-            <Navbar />
+            
                 <Route exact path='/home' component={HomePage}/>
                 <Route exact path="/" component={LandingPage}/>
                 </loggedContext.Provider>
