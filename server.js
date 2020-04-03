@@ -13,6 +13,7 @@ if (process.env.NODE_ENV === "production") {
   }
 
 // app.use('/api', hollerRoutes);
+// app.use ('/', )
 app.use('/data', sqlRoutes);
 app.use('/api', hollerRoutes)
 
