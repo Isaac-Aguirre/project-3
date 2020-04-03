@@ -22,6 +22,7 @@ router.get('/users/:id?', async (req, res) => {
     }
 });
 
+
 router.get('/howls/:id?', async (req, res) => {
     let id = req.params.id;
     if (id) {
@@ -42,5 +43,6 @@ router.get('/howls/:id?', async (req, res) => {
         }
     }
 });
+
 
 
