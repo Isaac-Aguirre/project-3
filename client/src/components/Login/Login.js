@@ -1,7 +1,8 @@
 import React, {useContext, useState} from 'react';
 import loggedContext from '../../utils/userContext'
+import './Login.css'
 
-export default function ({logIn}) {
+export default function ({logIn, setLogIn}) {
 
     const {user, login, signUp} = useContext(loggedContext);
     const [email, setEmail] = useState('');
@@ -11,7 +12,9 @@ export default function ({logIn}) {
     return (
 
         <div>
-            <form>
+            <div className='card-body'>
+                {logIn? <><div className='card-title'><h5 >Log In<button onClick={()=> setLogIn(false)} className='btn btn-primary btn-switch'>Sign Up</button></h5></div></> : 
+                <><div className='card-title'><h5>Sign Up<button onClick={()=> setLogIn(true)} className='btn btn-primary btn-switch'>Login</button></h5></div></>}
                 {!logIn ? <div className="form-group">
                     <label>User Name</label>
                     <input onChange={(e)=>setUserName(e.target.value)} type="text" className="form-control" id="userName" aria-describedby="emailHelp" />
@@ -32,7 +35,7 @@ export default function ({logIn}) {
                 <button onClick={(e)=>{e.preventDefault(); logIn ? login({email:email,password:password}) : 
                 signUp({username: userName,email:email,password:password})}} className="btn btn-primary">{logIn ? "Log In" : "Sign Up" }</button>
 
-            </form>
+            </div>
         </div>
 
 
