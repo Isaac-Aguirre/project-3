@@ -1,6 +1,6 @@
 {
     "development": {
-      "username": "Armen",
+      "username": "root",
       "password": "password",
       "database": "hollar_db",
       "host": "127.0.0.1",
