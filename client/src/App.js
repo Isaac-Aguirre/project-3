@@ -40,7 +40,6 @@ function App() {
         <div className='container'>
             <Router>
             <loggedContext.Provider value={{...user, login: handleLogin}}>
-            <Navbar />
                 <Route exact path= '/news' component={NewsPage}/>
                 <Route exact path='/home' component={HomePage}/>
                 <Route exact path="/" component={LandingPage}/>
