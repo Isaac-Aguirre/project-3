@@ -1,7 +1,7 @@
 {
     "development": {
       "user": "root",
-      "password": "password",
+      "password": "Frontier280",
       "database": "hollar_db",
       "host": "localhost",
       "port": 3306,
