@@ -18,6 +18,10 @@ router.post('/login', (req,res)=>{
        } 
    })
 });
+
+// router.get('/user/:id', (req,res)=>{
+//     db.Followers.findOne({where:{id:req.params.id}}).then(followers=> res.json(followers))
+// })
 // router.get('/users/:id?', async (req, res) => {
 //     let id = req.params.id;
 //     if (id) {

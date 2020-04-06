@@ -1,9 +1,9 @@
 
 import React, { useContext, useState } from 'react'
 import loggedContext from '../../utils/userContext';
-import { Redirect } from 'react-router-dom';
-import NewsPage from '../NewsPage/NewsPage'
-import Navbar from '../Navbar/Navbar';
+import NewsPage from '../NewsPage/NewsPage';
+import NavBar from '../Navbar/Navbar';
+import Howl from '../Howl/Howl'
 import './HomePage.css';
 
 const followers = ['Sadiq', 'Vegeta', 'Buu', 'Trunks', 'Gohan'];
@@ -14,12 +14,11 @@ const Follower =({name})=>{
 
 export default () => {
     const [filteredFollowers, setFilteredFollowers] = useState(followers)
-
+    const [page, setPage] = useState('howls')
     const { user } = useContext(loggedContext);
     return (
         <>
-            <Navbar />
-
+        <NavBar setPage={setPage}/>
             <div className="container mt-3">
                 <div className="row">
                     <div className="col-2">
@@ -37,8 +36,8 @@ export default () => {
                             <button id='submitHollar' className='btn btn-secondary'>Hollar</button>
                         </div>
 
-                        <div id="news" className="mt-5 row">
-                            <NewsPage/>
+                        <div id="news" className= "container mt-5">
+                            {page === 'news'? <NewsPage/> : <Howl/>}
                         </div>
                     </div>
                 </div>

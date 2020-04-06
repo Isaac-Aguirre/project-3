@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function(){
+export default function({setPage}){
   return(
     // Navbar Name
     <div className="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,10 +15,10 @@ export default function(){
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="/home">Home <span className="sr-only">(current)</span></a>
+            <a className="nav-link" onClick={()=>{setPage('howl')}} href="/home">Home <span className="sr-only">(current)</span></a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/news">News</a>
+            <a className="nav-link" onClick={()=>{setPage('news')}} href="#">News</a>
           </li>
           <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
