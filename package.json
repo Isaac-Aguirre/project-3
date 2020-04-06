@@ -26,9 +26,13 @@
   "homepage": "https://github.com/Isaac-Aguirre/project-3#readme",
   "dependencies": {
     "axios": "^0.19.2",
+<<<<<<< HEAD
     "bcrypt": "^4.0.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
+=======
+    "brcypt": "^1.0.1",
+>>>>>>> f7019931b14cc6ddda6a05c3297b5f522e8eecc5
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "if-env": "^1.0.4",
