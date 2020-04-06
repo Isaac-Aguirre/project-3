@@ -3,13 +3,39 @@ const db = require('../models')
 
 router.post('/signup', ({body},res)=>{
     console.log(body)
-    db.User.create(body).then(response=> console.log(response))
+    db.User.findOne({where:{email:body.email}}).then(data=>{
+        data? res.json('user already exists with that email!') :
+        db.User.create({...body, followers: "[]", following:"[]"}).then(response=>{
+        res.json(response.dataValues)
+        console.log(response)})
+    })
 });
+
+router.put('/user/follow', ({body}, res)=>{
+    db.User.findOne({where:{email:body.userA}}).then(data1=>{
+        let userAFollowing = JSON.parse(data1.dataValues.following);
+        userAFollowing.push(body.userB);
+        db.User.update({following: JSON.stringify(userAFollowing)},{where:{email:body.userA}}).then(data2=>{
+            console.log(data2)
+            db.User.findOne({where:{email:body.userB}}).then(data3=>{
+                let userBFollowers = JSON.parse(data3.dataValues.followers);
+                userBFollowers.push(body.userA);
+                db.User.update({followers: JSON.stringify(userBFollowers)},{where:{email:body.userB}}).then(data4=>{
+                    console.log(data4);
+                    res.json('following complete!')
+                })
+        })
+        })
+           
+        
+    })
+})
 
 router.post('/login', (req,res)=>{
     //placeholder dummy login logic
    db.User.findOne({where:{email: req.body.email}}).then(user=>{
-       console.log(user)
+       console.log(user);
+     
        if(user){
            //run passport js middleware function
            user.dataValues.password === req.body.password ? res.json(user) : res.json('password incorrect')

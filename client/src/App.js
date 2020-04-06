@@ -39,12 +39,14 @@ function App() {
     return (
         <div className='container'>
             <Router>
-            <loggedContext.Provider value={{...user, login: handleLogin}}>
+                <Switch>
+                     <loggedContext.Provider value={{...user, login: handleLogin}}>
                 <Route exact path= '/news' component={NewsPage}/>
                 <Route exact path='/home' component={HomePage}/>
                 <Route exact path="/" component={LandingPage}/>
                 </loggedContext.Provider>
             </Router>
+                </Switch>
         </div>
     )
 }
