@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes){
         email: DataTypes.STRING,
         password: DataTypes.STRING,
         followers: DataTypes.STRING,
-        following: DataTypes.STRING,
+        following:DataTypes.STRING, 
         username: DataTypes.STRING
     })
     return User
