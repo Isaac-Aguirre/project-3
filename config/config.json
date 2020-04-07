@@ -1,0 +1,28 @@
+{
+    "development": {
+      "username": "root",
+
+      "password": "sqlsql",
+
+      "database": "hollar_db",
+      "host": "localhost",
+      "port": 3306,
+      "dialect": "mysql"
+    },
+    "test": {
+      "user": "root",
+      "password": "password",
+      "database": "hollar_db",
+      "host": "localhost",
+      "port": 3306,
+      "dialect": "mysql"
+    },
+    "production": {
+      "user": "root",
+      "password": "password",
+      "database": "hollar_db",
+      "host": "localhost",
+      "port": 3306,
+      "dialect": "mysql"
+    }
+  }

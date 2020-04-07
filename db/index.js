@@ -2,7 +2,7 @@ import mysql from 'mysql'
 
 let pool = mysql.createPool({
     password: 'Frontier280',
-    user: 'root',
+    username: 'root',
     database: 'hollar_db',
     host: 'localhost',
     port: '3306'

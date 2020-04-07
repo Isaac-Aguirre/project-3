@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS users(
 );
 CREATE TABLE followers (
     user_id bigint(20) unsigned NOT NULL,
-    follower_id bigint(20) unsigned NOT NULL,
-    following_id bigint(20) unsigned NOT NULL,
+    followers VARCHAR unsigned ,
+    following VARCHAR unsigned ,
     PRIMARY KEY (follower_id)
 );
