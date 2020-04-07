@@ -12,6 +12,8 @@ export default function ({logIn, setLogIn}) {
     const [userName, setUserName] = useState('');
     const [password2, setPassword2] = useState('');
 
+    
+
     function register(){
         if (!userName || !email || !password || !password2){
             return alert("Please enter all feilds");
@@ -24,13 +26,12 @@ export default function ({logIn, setLogIn}) {
             email: email,
             password: password
         }).then(function (res){
-            console.log(res)
+            return res.data;
         }).catch(function (err){
             console.log(err);
         })  
     }
     return (
-
         <div>
             <div className='card-body'>
                 {logIn? <><div className='card-title'><h5 >Log In<button onClick={()=> setLogIn(false)} className='btn btn-primary btn-switch'>Sign Up</button></h5></div></> : 

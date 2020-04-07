@@ -25,19 +25,19 @@ passport.use(new LocalStrategy({
 
 router.post('/register', (req, res) => {
   user = req.body;
-  if (!user.username || !user.email || !user.password) {
-    res.send('You are missing one or more of the required feilds');
-    return;
-  }
   bcrypt.hash(user.password, saltRounds, function (err, hash) {
     user.password = hash;
     db.User.create(user).then(response => console.log("User in database"))
-    db.User.findOne({ where: { email: user.email } }).then(results => {
-      // console.log(results.dataValues.id)
-      req.login(results.dataValues.id, function (err) {
-        res.json(results.dataValues.username);
-      });
-    });
+
+    res.redirect('/home');
+
+    // res.json(user.username);
+    // db.User.findOne({ where: { email: user.email } }).then(results => {
+    //   // console.log(results.dataValues.id)
+    //   req.login(results.dataValues.id, function (err) {
+    //     res.json(results.dataValues.username);
+    //   });
+    // });
   })
 });
 
