@@ -1,14 +1,34 @@
 import React, {useContext, useState} from 'react';
 import loggedContext from '../../utils/userContext'
 import './Login.css'
+import axios from 'axios';
+import{ BrowserRouter as Router, Redirect} from "react-router-dom";
 
 export default function ({logIn, setLogIn}) {
 
-    const {user, login, signUp} = useContext(loggedContext);
+    const {user, login} = useContext(loggedContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userName, setUserName] = useState('');
+    const [password2, setPassword2] = useState('');
 
+    function register(){
+        if (!userName || !email || !password || !password2){
+            return alert("Please enter all feilds");
+        }
+        if(password !== password2){
+            return alert ("Passwords need to match");
+        }
+        axios.post('/user/register', {
+            username: userName,
+            email: email,
+            password: password
+        }).then(function (res){
+            console.log(res)
+        }).catch(function (err){
+            console.log(err);
+        })  
+    }
     return (
 
         <div>
@@ -28,18 +48,17 @@ export default function ({logIn, setLogIn}) {
                     <label>Password</label>
                     <input onChange={(e)=>setPassword(e.target.value)} type="password" className="form-control" id="exampleInputPassword1" />
                 </div>
+                {!logIn ? <div className="form-group">
+                    <label>Re-enter Password</label>
+                    <input onChange={(e)=>setPassword2(e.target.value)} type="password" className="form-control" id="password2" aria-describedby="emailHelp" />
+                </div> : ''}
                 <div className="form-group form-check">
                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                     <label className="form-check-label" >Remember Me</label>
                 </div>
                 <button onClick={(e)=>{e.preventDefault(); logIn ? login({email:email,password:password}) : 
-                signUp({username: userName,email:email,password:password})}} className="btn btn-primary">{logIn ? "Log In" : "Sign Up" }</button>
-
+                register()}} className="btn btn-primary">{logIn ? "Log In" : "Sign Up" }</button>
             </div>
         </div>
-
-
-
-
     )
 }
