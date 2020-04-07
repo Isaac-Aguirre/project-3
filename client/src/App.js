@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 //import './App.css';
-import Navbar from './components/Navbar/Navbar';
+//import Navbar from './components/Navbar/Navbar';
 //import Sidebar from './components/Sidebar/Sidebar';
 import LandingPage from './components/LandingPage/LandingPage';
 import HomePage from './components/HomePage/HomePage'
@@ -16,7 +16,8 @@ import API from './utils/API';
 import loggedContext from './utils/userContext';
 
 function App() {
-    const [user, setUser] = useState({user:null})
+    const [user, setUser] = useState({user:null});
+    const [followers, setFollowers] = useState([])
 
     useEffect(()=>{
         if(user){
@@ -31,7 +32,8 @@ function App() {
     const handleLogin =(data)=>{
         API.login(data).then(res=>{
             console.log(res);
-            setUser(res.data)
+            setUser(res.data);
+            // API.getFollowers(res.data.id).then(response=> setFollowers(JSON.parse(response.data)))
         }).catch(err=>console.log(err))
     }
 
@@ -39,12 +41,17 @@ function App() {
     return (
         <div className='container'>
             <Router>
-            <loggedContext.Provider value={{...user, login: handleLogin}}>
-                <Route exact path= '/news' component={NewsPage}/>
+
+            <loggedContext.Provider value={{...user, login: handleLogin, signUp: handleSignup}}>
+            
+
                 <Route exact path='/home' component={HomePage}/>
                 <Route exact path="/" component={LandingPage}/>
                 </loggedContext.Provider>
+                </Switch>
+           
             </Router>
+                </Switch>
         </div>
     )
 }

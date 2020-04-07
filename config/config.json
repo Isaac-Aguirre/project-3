@@ -1,7 +1,9 @@
 {
     "development": {
       "username": "root",
-      "password": "password",
+
+      "password": "sqlsql",
+
       "database": "hollar_db",
       "host": "localhost",
       "port": 3306,
