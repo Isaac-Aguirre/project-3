@@ -35,7 +35,7 @@ app.use('/api', hollerRoutes);
 app.use('/user', authRoutes)
 app.use('/api', hollerRoutes)
 
-db.sequelize.sync().then(()=>{
+db.sequelize.sync({force: false}).then(()=>{
   app.listen(PORT, ()=>{
 console.log('app is running on port ', PORT)
 })
