@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 //import './App.css';
-import Navbar from './components/Navbar/Navbar';
+//import Navbar from './components/Navbar/Navbar';
 //import Sidebar from './components/Sidebar/Sidebar';
 import LandingPage from './components/LandingPage/LandingPage';
 import HomePage from './components/HomePage/HomePage'
@@ -41,10 +41,9 @@ function App() {
     return (
         <div className='container'>
             <Router>
-                <Switch>
 
-                     <loggedContext.Provider value={{...user, login: handleLogin}}>
-                <Route exact path= '/news' component={NewsPage}/>
+            <loggedContext.Provider value={{...user, login: handleLogin, signUp: handleSignup}}>
+            
 
                 <Route exact path='/home' component={HomePage}/>
                 <Route exact path="/" component={LandingPage}/>
