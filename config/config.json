@@ -16,10 +16,10 @@
       "dialect": "mysql"
     },
     "production": {
-      "user": "root",
-      "password": "password",
-      "database": "hollar_db",
-      "host": "localhost",
+      "username": "bmfbjv0qbzt5j9a2",
+      "password": "huyjw30f8mnbooop",
+      "database": "gfu3iljmdsqb01pz",
+      "host": "ffn96u87j5ogvehy.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       "port": 3306,
       "dialect": "mysql"
     }
