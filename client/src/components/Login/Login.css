@@ -1,3 +1,8 @@
 .btn-switch {
     float:right;
 }
+
+body {
+    background-image: url("https://www8.lunapic.com/editor/working/158636297583677287?77241");
+    /* background-repeat: repeat-y; */
+  }
