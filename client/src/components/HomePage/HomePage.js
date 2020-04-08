@@ -22,7 +22,7 @@ export default () => {
                 <div className="row">
                     <div className="col-2">
                         <div className='row'>
-                            <img id="pic" src='https://vignette.wikia.nocookie.net/dragonuniverse/images/a/a4/MigattenoGokuiPerfectHeroes.png/revision/latest?cb=20180303025918' className='img-fluid'/>
+                            <img id="pic" src='https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png' className='img-fluid'/>
                         </div>
                         <input id='searchUser' placeholder='Search' onChange={e=> setFilteredFollowers(followers.filter(follower=> follower.toLowerCase().includes(e.target.value)))}/>
                         <div className='row' id='followers'>
