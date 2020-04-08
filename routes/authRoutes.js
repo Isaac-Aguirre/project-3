@@ -6,8 +6,8 @@ const saltRounds = 10;
 const passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy({
-  usernameField: 'email',
-  passwordField: 'passwd'
+  usernameField: 'username',
+  passwordField: 'password'
 },
   function (username, password, done) {
     User.findOne({ username: username }, function (err, user) {
@@ -23,45 +23,23 @@ passport.use(new LocalStrategy({
   }
 ));
 
-router.post('/register', (req, res) => {
-  user = req.body;
-  bcrypt.hash(user.password, saltRounds, function (err, hash) {
-    user.password = hash;
-    db.User.create(user).then(response => console.log("User in database"))
+// router.post('/register', (req, res) => {
+//   user = req.body;
+//   bcrypt.hash(user.password, saltRounds, function (err, hash) {
+//     user.password = hash;
+//     db.User.create(user).then(response => console.log("User in database")
+//     res.redirect('/home');
 
-    res.redirect('/home');
+//     // res.json(user.username);
+//     // db.User.findOne({ where: { email: user.email } }).then(results => {
+//     //   // console.log(results.dataValues.id)
+//     //   req.login(results.dataValues.id, function (err) {
+//     //     res.json(results.dataValues.username);
+//     //   });
+//     // });
+//   })
+// });
 
-    // res.json(user.username);
-    // db.User.findOne({ where: { email: user.email } }).then(results => {
-    //   // console.log(results.dataValues.id)
-    //   req.login(results.dataValues.id, function (err) {
-    //     res.json(results.dataValues.username);
-    //   });
-    // });
-  })
-});
-
-router.post('/login', (req, res) => {
-  //placeholder dummy login logic
-  db.User.findOne({ where: { email: req.body.email } }).then(user => {
-    // console.log(user)
-    if (user) {
-      //run passport js middleware function
-      bcrypt.compare(req.body.password, user.dataValues.password).then (function (result){
-        if(result === true){
-          res.json(user.dataValues.username)
-        } else res.json("Inncorrect password")
-      });
-    } else {
-      res.json('No user with that email')
-    }
-  })
-});
-
-router.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/');
-});
 
 passport.serializeUser(function (user, done) {
   done(null, user.id);

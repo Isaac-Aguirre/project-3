@@ -6,31 +6,35 @@ import{ BrowserRouter as Router, Redirect} from "react-router-dom";
 
 export default function ({logIn, setLogIn}) {
 
-    const {user, login} = useContext(loggedContext);
+    const {user, login, signUp} = useContext(loggedContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [userName, setUserName] = useState('');
-    const [password2, setPassword2] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [userName, setUserName] = useState('')
 
+
+    const handleSignUp =()=>{
+        password === passwordConfirm ? signUp({username: userName, email: email, password: password}) : console.log('passwords not matching!')
+    }
     
 
-    function register(){
-        if (!userName || !email || !password || !password2){
-            return alert("Please enter all feilds");
-        }
-        if(password !== password2){
-            return alert ("Passwords need to match");
-        }
-        axios.post('/user/register', {
-            username: userName,
-            email: email,
-            password: password
-        }).then(function (res){
-            return res.data;
-        }).catch(function (err){
-            console.log(err);
-        })  
-    }
+    // function register(){
+    //     if (!userName || !email || !password || !password2){
+    //         return alert("Please enter all feilds");
+    //     }
+    //     if(password !== password2){
+    //         return alert ("Passwords need to match");
+    //     }
+    //     axios.post('/user/register', {
+    //         username: userName,
+    //         email: email,
+    //         password: password
+    //     }).then(function (res){
+    //         return res.data;
+    //     }).catch(function (err){
+    //         console.log(err);
+    //     })  
+    // }
     return (
         <div>
             <div className='card-body'>
@@ -51,14 +55,14 @@ export default function ({logIn, setLogIn}) {
                 </div>
                 {!logIn ? <div className="form-group">
                     <label>Re-enter Password</label>
-                    <input onChange={(e)=>setPassword2(e.target.value)} type="password" className="form-control" id="password2" aria-describedby="emailHelp" />
+                    <input onChange={(e)=>setPasswordConfirm(e.target.value)} type="password" className="form-control" id="password2" aria-describedby="emailHelp" />
                 </div> : ''}
                 <div className="form-group form-check">
                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                     <label className="form-check-label" >Remember Me</label>
                 </div>
                 <button onClick={(e)=>{e.preventDefault(); logIn ? login({email:email,password:password}) : 
-                register()}} className="btn btn-primary">{logIn ? "Log In" : "Sign Up" }</button>
+               handleSignUp()}} className="btn btn-primary">{logIn ? "Log In" : "Sign Up" }</button>
             </div>
         </div>
     )

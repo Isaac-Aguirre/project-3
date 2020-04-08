@@ -10,13 +10,14 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Redirect
 } from "react-router-dom";
 import API from './utils/API';
 import loggedContext from './utils/userContext';
 function App() {
     const [user, setUser] = useState({ user: null });
-    const [followers, setFollowers] = useState([])
+    const [followers, setFollowers] = useState([]);
+
     useEffect(() => {
         if (user) {
             navigator.geolocation.getCurrentPosition(
@@ -26,27 +27,36 @@ function App() {
             console.log()
         }
     }, [user])
+
     const handleLogin = (data) => {
         API.login(data).then(res => {
-            console.log(res);
-            setUser(res.data);
+            console.log(res.data)
+            res.data.success ? 
+            setUser({user:res.data}) : console.log(res.data.msg)
             // API.getFollowers(res.data.id).then(response=> setFollowers(JSON.parse(response.data)))
         }).catch(err => console.log(err))
     }
     const handleSignup = (data) =>{
         API.signUp(data).then(res=>{
             console.log(res);
-            setUser(res.data);
+            res.data.success ? 
+            setUser({user: res.data}) : console.log(res.data.msg)
         })
     }
     return (
         <div className='container'>
             <Router>
                 <Switch>
+                    {user.user? <><Redirect to='/home'/> <loggedContext.Provider value={{ ...user, login: handleLogin, signUp: handleSignup }}>
+                        <Route exact path='/home' component={HomePage} />
+                        <Route exact path="/" component={LandingPage} />
+                    </loggedContext.Provider></>:
+                    <>
                     <loggedContext.Provider value={{ ...user, login: handleLogin, signUp: handleSignup }}>
                         <Route exact path='/home' component={HomePage} />
                         <Route exact path="/" component={LandingPage} />
-                    </loggedContext.Provider>
+                    </loggedContext.Provider></>}
+                    
                 </Switch>
             </Router>
         </div>

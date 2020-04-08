@@ -1,14 +1,20 @@
 const router = require('express').Router()
-const db = require('../models')
+const db = require('../models');
+const bcrypt = require('bcrypt')
 
 router.post('/signup', ({body},res)=>{
     console.log(body)
     db.User.findOne({where:{email:body.email}}).then(data=>{
-        data? res.json('user already exists with that email!') :
-        db.User.create({...body, followers: "[]", following:"[]"}).then(response=>{
-        res.json(response.dataValues)
+        if(data){
+            res.json({success: 0, msg:'user already exists with that email!'})
+        }else{
+        bcrypt.hash(body.password, 10, function (err, hash) {    
+        db.User.create({...body, password:hash, followers: "[]", following:"[]", }).then(response=>{
+        res.json({...response.dataValues, success: 1})
         console.log(response)})
-    })
+            })
+        }
+}).catch(err=>console.log(err))
 });
 
 router.put('/user/follow', ({body}, res)=>{
@@ -31,20 +37,30 @@ router.put('/user/follow', ({body}, res)=>{
     })
 })
 
-router.post('/login', (req,res)=>{
-    //placeholder dummy login logic
-   db.User.findOne({where:{email: req.body.email}}).then(user=>{
-       console.log(user);
-     
-       if(user){
-           //run passport js middleware function
-           user.dataValues.password === req.body.password ? res.json(user) : res.json('password incorrect')
-       } else {
-          res.json('No user with that email') 
-       } 
-   })
-});
 
+
+router.post('/login', (req, res) => {
+    //placeholder dummy login logic
+    db.User.findOne({ where: { email: req.body.email } }).then(user => {
+      // console.log(user)
+      if (user) {
+        //run passport js middleware function
+        bcrypt.compare(req.body.password, user.dataValues.password).then (function (result){
+            console.log(result)
+          if(result === true){
+            res.json({success: 1, ...user.dataValues})
+          } else res.json({success: 0, msg:"Inncorrect password"})
+        });
+      } else {
+        res.json({success: 0, msg:"No user with that email"})
+      }
+    })
+  });
+  
+  router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+  });
 // router.get('/user/:id', (req,res)=>{
 //     db.Followers.findOne({where:{id:req.params.id}}).then(followers=> res.json(followers))
 // })

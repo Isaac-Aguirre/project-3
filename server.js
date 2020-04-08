@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const hollerRoutes = require('./routes/hollerRoutes');
-// const sqlRoutes = require('./routes/sqlRoutes')
+const sqlRoutes = require('./routes/sqlRoutes')
 const db = require('./models');
 const authRoutes = require('./routes/authRoutes')
 const cookieParser = require ('cookie-parser')
@@ -33,7 +33,7 @@ app.use(passport.session());
 
 app.use('/api', hollerRoutes);
 app.use('/user', authRoutes)
-app.use('/api', hollerRoutes)
+app.use('/data', sqlRoutes)
 
 db.sequelize.sync({force: false}).then(()=>{
   app.listen(PORT, ()=>{
